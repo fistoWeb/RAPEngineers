@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Flowchart</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5f5f5;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .flowchart {
+      position: relative;
+      width: 800px;
+      height: 600px;
+    }
+    .node {
+      position: absolute;
+      padding: 15px;
+      background: #4a90e2;
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .node.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .connection {
+      stroke: #666;
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      opacity: 0;
+      transition: stroke-dashoffset 1s ease-out, opacity 0.5s ease;
+    }
+    .connection.active {
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="flowchart">
+    <svg width="800" height="600" style="position: absolute; top: 0; left: 0;">
+      <path class="connection" id="branch1" />
+      <path class="connection" id="branch2" />
+      <path class="connection" id="point1" />
+      <path class="connection" id="point2" />
+    </svg>
+    
+    <div class="node" id="central" style="top: 50px; left: 340px; background: #27ae60;">Central</div>
+    <div class="node" id="branch1Node" style="top: 200px; left: 200px; background: #e67e22;">Branch 1</div>
+    <div class="node" id="branch2Node" style="top: 200px; left: 480px; background: #e67e22;">Branch 2</div>
+    <div class="node" id="point1Node" style="top: 350px; left: 160px; background: #3498db;">Point 1</div>
+    <div class="node" id="point2Node" style="top: 350px; left: 520px; background: #3498db;">Point 2</div>
+  </div>
+
+  <script>
+    function getCenter(element) {
+      const rect = element.getBoundingClientRect();
+      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+    }
+
+    function drawPath(startEl, endEl, pathId) {
+      const start = getCenter(startEl);
+      const end = getCenter(endEl);
+      const svg = document.querySelector("svg").getBoundingClientRect();
+      const path = `M ${start.x - svg.left} ${start.y - svg.top} C ${start.x - svg.left} ${(start.y + end.y) / 2 - svg.top}, ${end.x - svg.left} ${(start.y + end.y) / 2 - svg.top}, ${end.x - svg.left} ${end.y - svg.top}`;
+      document.getElementById(pathId).setAttribute('d', path);
+    }
+
+    function animateFlowchart() {
+      const nodes = ["central", "branch1Node", "branch2Node", "point1Node", "point2Node"];
+      const connections = ["branch1", "branch2", "point1", "point2"];
+      let delay = 500;
+      
+      document.getElementById(nodes[0]).classList.add("active");
+      setTimeout(() => {
+        document.getElementById(nodes[1]).classList.add("active");
+        document.getElementById(nodes[2]).classList.add("active");
+        document.getElementById(connections[0]).classList.add("active");
+        document.getElementById(connections[1]).classList.add("active");
+        
+        setTimeout(() => {
+          document.getElementById(nodes[3]).classList.add("active");
+          document.getElementById(nodes[4]).classList.add("active");
+          document.getElementById(connections[2]).classList.add("active");
+          document.getElementById(connections[3]).classList.add("active");
+        }, delay);
+      }, delay);
+    }
+
+    function updateConnections() {
+      drawPath(central, branch1Node, 'branch1');
+      drawPath(central, branch2Node, 'branch2');
+      drawPath(branch1Node, point1Node, 'point1');
+      drawPath(branch2Node, point2Node, 'point2');
+    }
+
+    updateConnections();
+    window.onload = animateFlowchart;
+    window.addEventListener('resize', updateConnections);
+  </script>
+</body>
+</html>

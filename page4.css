@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins";
+}
+
+.page5-container {
+    height: 400px;
+    max-width: 100%;
+    
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    letter-spacing: 1.1px;
+    
+  scrollbar-color: #7ac1ff #fff
+}
+
+/* For Webkit browsers like Chrome, Safari */
+.page5-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.page5-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.page5-container::-webkit-scrollbar-thumb {
+  background-color: #4092d9; /* Thumb color */
+  border-radius: 10px;
+}
+
+.page5-container::-webkit-scrollbar-thumb:hover {
+  background-color: #357ab7; /* Slightly darker shade on hover */
+}
+  
+  .page5-timeline {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 90px;
+    width: fit-content;
+    padding-top: 2%;
+  }
+  
+  .page5-timeline ol {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .page5-horizontal-line {
+    position: relative;
+    background-color: #00008b;
+    height: 3px;
+    border-radius: 4px;
+    margin: 5em 0;
+  }
+  
+  .page5-date {
+    position: relative;
+    text-align: center;
+    top: -78px;
+    color: #e00a09;
+  }
+  
+  .page5-date:after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #00008b;
+    background-color: #fff;
+    transition: 0.3s ease;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 38px;
+    left: 50%;
+  }
+  
+  .page5-panel {
+    margin: 0px 10px;
+    position: relative;
+  }
+  
+  .page5-content {
+    width: 250px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    background: #4092d9;
+    color: #fff;
+    top: -25px;
+    word-wrap: break-word;
+    hyphens: auto;
+    font-size: 15px;
+    word-break: break-word;
+    white-space: normal;
+    animation: myAnim 3s ease-in-out infinite;
+  }
+
+  .page5-container {
+    font-size: 12px;
+  }
+
+  .page5-container p {
+    margin-top: .2em !important;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 1600px) {
+    .page5-content {
+      animation:  myAnimSmall 3s ease-in-out infinite;
+    }
+
+    .page5-timeline {
+      margin-top: 90px;
+    }
+  }
+  
+  .page5-content:after {
+    border-bottom: solid 20px #4092d9;
+    border-left: solid 20px transparent;
+    border-right: solid 20px transparent;
+    width: 0;
+    height: 0;
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 42%;
+  }
+  
+  .page5-event:nth-child(even) .page5-panel {
+    top: -120%; /* If you have a large amount of text in content, change this value accordingly. */
+  }
+  
+  .page5-event:nth-child(even) .page5-panel .page5-content {
+    top: 20%;
+    margin-bottom: 2px;
+  }
+  
+  .page5-event:nth-child(even) .page5-panel .page5-content:after {
+    top: 100%;
+    border-top: solid 20px #4092d9;
+    border-bottom: solid 0px;
+  }
+  
+  .page5-event:nth-child(even) .page5-date {
+    top: 0px;
+  }
+  
+  .page5-event:nth-child(even) .page5-date:after {
+    top: -40px;
+  }
+
+  @media only screen and (max-width: 1300px) {
+  .page5-container {
+    height: 350px;
+}
+  }
+
+
+  @media only screen and (max-width: 800px) {
+    .page5-container {
+      width: auto;
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .page5-container {
+      width: 280px;
+      height: 100%;
+      overflow-y: auto;
+    }
+  
+    .page5-timeline {
+      margin-top: 0px;
+    }
+  
+    .page5-timeline ol {
+      flex-direction: column;
+    }
+  
+    .page5-horizontal-line {
+      height: auto;
+      background: white;
+    }
+  
+    .page5-vertical-line {
+      border-left: 6px solid #0d6a3d;
+      height: 100%;
+      position: absolute;
+      left: 0;
+    }
+  
+    .page5-date {
+      left: 10px;
+      top: -40px;
+    }
+  
+    .page5-date:after {
+      left: -7px;
+      top: 200%;
+    }
+  
+    .page5-content {
+      width: 175px;
+      top: -50px;
+      left: 45px;
+      
+    }
+    
+  
+  
+    .page5-content:after {
+      border-right: solid 20px #0d6a3d;
+      border-left: solid 20px transparent;
+      border-top: solid 10px transparent;
+      border-bottom: solid 20px transparent;
+      right: 100%;
+      left: -18%;
+      top: 30%;
+    }
+  
+    .page5-event:nth-child(even) .page5-panel {
+      top: -50px;
+    }
+  
+    .page5-event:nth-child(even) .page5-panel .page5-content:after {
+      top: 20%;
+      border-top: solid 6px transparent;
+      border-bottom: solid 20px transparent;
+    }
+  
+    .page5-event:nth-child(even) .page5-date {
+      top: -40px;
+    }
+  
+    .page5-event:nth-child(even) .page5-date:after {
+      top: 40px;
+    }
+  }
+  
+  @keyframes myAnim {
+    0% {
+      scale: .85;
+    }
+    50% {
+      scale: .95;
+    }
+    100% {
+      scale: .85;
+  }
+  }
+  @keyframes myAnimSmall {
+    0% {
+      scale: .55;
+    }
+    50% {
+      scale: .7;
+    }
+    100% {
+      scale: .55;
+  }
+  }
